@@ -2,6 +2,8 @@ import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { ProfileProps } from '../../interfaces/app_interfaces';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function Profile() {
     const { username } = useParams();
     const [profile, setProfile] = useState<ProfileProps | null>(null);
@@ -9,7 +11,7 @@ function Profile() {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/profile/${username}`);
+                const response = await fetch(`${API_BASE_URL}/api/profile/${username}`, {credentials: 'include'});
                 const data:ProfileProps = await response.json();
 
                 if (response.ok) {

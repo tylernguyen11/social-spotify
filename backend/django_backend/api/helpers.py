@@ -5,20 +5,12 @@ from api.models import SpotifyToken
 from django.conf import settings
 
 def get_spotify_token():
-    """
-    Returns a valid Spotify access token.
-    If the current token is expired, it refreshes it.
-    """
     token = SpotifyToken.objects.first()
     if not token or token.expires_in <= time.time():
         refresh_spotify_token()
     return SpotifyToken.objects.first().access_token
 
 def refresh_spotify_token():
-    """
-    Fetches a new Spotify access token using the client credentials flow
-    and updates the stored token in the database.
-    """
     client_id = settings.SPOTIFY_CLIENT_ID
     client_secret = settings.SPOTIFY_CLIENT_SECRET
     token_url = 'https://accounts.spotify.com/api/token'

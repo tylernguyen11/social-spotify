@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import LoginButton from './components/LoginButton/LoginButton';
 import { useNavigate } from 'react-router';
+import SearchArtists from './components/SpotifySearch/SearchArtists';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -42,6 +43,7 @@ function App() {
       </p>
       <LoginButton/>
       <button onClick={onProfileClick}>Go to Profile</button>
+      <SearchArtists/>
     </>
     
   )

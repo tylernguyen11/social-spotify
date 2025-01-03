@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 # Create your models here.
 class SpotifyToken(models.Model):
     access_token = models.CharField(max_length=255)
-    expires_in = models.FloatField()  # Store expiration timestamp 
+    expires_in = models.FloatField()
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, email=None, password=None, country='US', **extra_fields):
@@ -49,7 +49,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
     display_name = models.CharField(max_length=30, blank=True, null=True)
-    profile_picture = models.URLField(blank=True, null=True)
+    avatar = models.URLField(blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     followers = models.IntegerField(default=0)
     following = models.IntegerField(default=0)
@@ -63,3 +63,12 @@ class UserTokens(models.Model):
 
     def __str__(self):
         return f"Refresh token of {self.user.username}"
+
+class Comment(models.Model):
+    artist_id = models.CharField(max_length=50)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.artist_id} - {self.content}"

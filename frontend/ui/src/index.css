@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: sans-serif, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -28,11 +28,17 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: black;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: #1db954;
+}
+
+p {
+  color: white;
 }
 
 button {
@@ -57,7 +63,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #191414;
   }
   a:hover {
     color: #747bff;
@@ -65,4 +71,17 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+:root[data-mantine-color-scheme="light"] {
+  --mantine-color-body: #121212 !important;
+  --mantine-color-text: #fff !important;
+}
+
+.HoverCard.Dropdown {
+  background-color: green;
+  color: blue;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
